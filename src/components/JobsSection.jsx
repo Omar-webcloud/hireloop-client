@@ -101,7 +101,7 @@ export default function JobsSection() {
             href="/jobs"
             className="inline-block rounded-xl bg-white px-8 py-3.5 text-sm font-semibold text-black hover:bg-gray-200 transition duration-300"
           >
-            View all job open
+            View all jobs
           </Link>
         </div>
       </div>
