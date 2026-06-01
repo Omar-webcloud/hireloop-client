@@ -61,7 +61,7 @@ export default function PricingSection() {
   ];
 
   return (
-    <section className="relative bg-[#08080a] py-24 text-white">
+    <section className="relative bg-black py-24 text-white">
       {/* Decorative Blur */}
       <div className="absolute top-10 left-10 h-[300px] w-[300px] rounded-full bg-violet-600/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 h-[300px] w-[300px] rounded-full bg-violet-600/5 blur-[120px] pointer-events-none" />

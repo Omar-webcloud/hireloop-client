@@ -8,11 +8,12 @@ export default function Home() {
   return (
     <div className="bg-[#0b0b0f] font-sans antialiased overflow-x-hidden">
       <StatsSection />
-      <div id="company">
-        <FeaturesSection />
-      </div>
+      
       <div id="jobs">
         <JobsSection />
+      </div>
+      <div id="company">
+        <FeaturesSection />
       </div>
       <div id="pricing">
         <PricingSection />

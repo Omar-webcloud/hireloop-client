@@ -52,7 +52,7 @@ export default function StatsSection() {
     ];
 
     return (
-        <section className="relative overflow-hidden bg-[#07070a] pt-32 pb-24 text-white min-h-[90vh] flex flex-col justify-between">
+        <section className="relative overflow-hidden bg-black pt-32 pb-24 text-white min-h-[90vh] flex flex-col justify-between">
             {/* Background Globe */}
             <div
                 className="absolute top-[45vh] inset-x-0 bottom-0 bg-contain bg-bottom bg-no-repeat opacity-90 z-0 pointer-events-none"

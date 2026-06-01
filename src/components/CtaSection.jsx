@@ -7,7 +7,7 @@ export default function CtaSection() {
   return (
     <section className="relative overflow-hidden bg-black text-white pt-32 pb-16">
       {/* Background glow and dome grid */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[560px]">
+      <div className="pointer-events-none absolute inset-x-0 top-5 h-[560px]">
         {/* The dome grid PNG — this defines the shape */}
         <div
           className="absolute inset-0"
