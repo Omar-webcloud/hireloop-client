@@ -1,12 +1,19 @@
 import StatsSection from "@/components/StatsSection";
-import Image from "next/image";
+import FeaturesSection from "@/components/FeaturesSection";
+import JobsSection from "@/components/JobsSection";
+import PricingSection from "@/components/PricingSection";
+import CtaSection from "@/components/CtaSection";
 
 export default function Home() {
   return (
-    <div className=" bg-zinc-50 font-sans dark:bg-black">
-      
-      <StatsSection></StatsSection>
-
+    <div className="bg-[#0b0b0f] font-sans antialiased overflow-x-hidden">
+      <StatsSection />
+      <FeaturesSection />
+      <JobsSection />
+      <div id="pricing">
+        <PricingSection />
+      </div>
+      <CtaSection />
     </div>
   );
 }
