@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { BarChart3, Send, TrendingUp } from "lucide-react";
 
 export default function FeaturesSection() {
   const features = [
@@ -16,11 +17,7 @@ export default function FeaturesSection() {
     {
       title: "Salary Insights",
       description: "Get real salary data to negotiate confidently.",
-      icon: (
-        <svg className="h-6 w-6 text-fuchsia-400" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.5 4.5 8.25-8.25m-18.75 3h.008v.008H2.25V10.5" />
-        </svg>
-      ),
+      icon: <BarChart3 className="h-6 w-6 text-fuchsia-400" />,
     },
     {
       title: "Top Companies",
@@ -43,12 +40,7 @@ export default function FeaturesSection() {
     {
       title: "One-Click Apply",
       description: "Simplify your job applications for an easier process!",
-      icon: (
-        <svg className="h-6 w-6 text-fuchsia-400" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 9.152c.582.448 1.148.89 1.676 1.345m-1.676-1.345L12 6.75M15.042 9.152H21.75M16.718 10.497l-3.326 3.327m3.326-3.327V16.5m-3.326-2.676l-1.65 1.65m1.65-1.65H6.75" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 9.152L9 15.192M6.002 18.002L4 20" />
-        </svg>
-      ),
+      icon: <Send className="h-6 w-6 text-fuchsia-400" />,
     },
     {
       title: "Resume Builder",
@@ -71,11 +63,7 @@ export default function FeaturesSection() {
     {
       title: "Career Growth Resources",
       description: "Boost your career with quick interview tips.",
-      icon: (
-        <svg className="h-6 w-6 text-fuchsia-400" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.5 4.5 8.25-8.25M21 12v3.75m0 0H17.25m3.75 0L15 15" />
-        </svg>
-      ),
+      icon: <TrendingUp className="h-6 w-6 text-fuchsia-400" />,
     },
   ];
 
