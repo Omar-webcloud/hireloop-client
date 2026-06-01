@@ -44,7 +44,7 @@ export default function CtaSection() {
           className="flex flex-wrap justify-center gap-4"
         >
           <Link
-            href="/register"
+            href="/auth/signup"
             className="rounded-xl bg-white px-8 py-4 text-sm font-semibold text-black hover:bg-gray-200 transition duration-300 shadow-lg"
           >
             Create a free account
