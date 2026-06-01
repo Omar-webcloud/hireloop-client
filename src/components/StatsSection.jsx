@@ -69,8 +69,8 @@ export default function StatsSection() {
                         <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-zinc-800" />
                         <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-[#0e0e12]/80 px-4 py-1.5 text-xs text-zinc-400 backdrop-blur-md">
                             <span>💼</span>
-                            <span className="font-bold text-[#f97316]">50,000+</span>
-                            <span className="font-mono text-[10px] tracking-wider text-zinc-500 uppercase">NEW JOBS THIS MONTH</span>
+                            <span className="font-bold text-[#fff]">50,000+</span>
+                            <span className="font-mono text-[12px] tracking-wider text-zinc-500 uppercase">NEW JOBS THIS MONTH</span>
                         </div>
                         <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-zinc-800" />
                     </div>
