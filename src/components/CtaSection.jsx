@@ -6,13 +6,28 @@ import { motion } from "motion/react";
 export default function CtaSection() {
   return (
     <section className="relative overflow-hidden bg-black text-white pt-32 pb-16">
-      {/* Background Dome Grid */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[550px] bg-center bg-no-repeat bg-contain opacity-80 pointer-events-none"
-        style={{
-          backgroundImage: "url('/images/cta-bg.png')",
-        }}
-      />
+      {/* Background glow and dome grid */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[560px]">
+        {/* The dome grid PNG — this defines the shape */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/images/cta-bg.png')",
+            backgroundPosition: "top center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        />
+        {/* Glow flipped — brightest at bottom-center of dome, fades upward */}
+        <div
+          className="absolute inset-0"
+          style={{
+           backgroundImage: `
+  radial-gradient(ellipse 60% 90% at 50% calc(100% - 270px), rgba(67, 56, 202, 0.95) 0%, rgba(55, 48, 163, 0.75) 25%, rgba(37, 30, 120, 0.4) 40%, rgba(0, 0, 0, 0) 60%)
+`,
+          }}
+        />
+      </div>
 
       {/* CTA Box Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center mb-36">
@@ -74,7 +89,7 @@ export default function CtaSection() {
               The AI-native career platform. Built for people who take their work seriously.
             </p>
 
-            {/* Social Icons matching Figma (circular dark violet boxes with white brand logo icons) */}
+            {/* Social Icons */}
             <div className="flex items-center gap-3 pt-4">
               <Link
                 href="#"
@@ -88,7 +103,6 @@ export default function CtaSection() {
                 href="#"
                 className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-600 border border-violet-500 text-white hover:bg-violet-500 transition duration-300"
               >
-                {/* Styled Pinterest 'P' icon */}
                 <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12c0 4.27 2.68 7.9 6.47 9.39-.09-.8-.17-2.02.03-2.9l1.17-4.96s-.3-.6-.3-1.48c0-1.39.8-2.43 1.8-2.43.85 0 1.26.64 1.26 1.4 0 .86-.55 2.14-.83 3.33-.23.99.5 1.8 1.48 1.8 1.78 0 3.15-1.88 3.15-4.59 0-2.4-1.72-4.08-4.19-4.08-2.85 0-4.53 2.14-4.53 4.35 0 .86.33 1.78.74 2.28a.33.33 0 01.08.31l-.27 1.13c-.04.18-.15.22-.35.13-1.3-.61-2.12-2.52-2.12-4.05 0-3.3 2.4-6.33 6.92-6.33 3.63 0 6.45 2.59 6.45 6.05 0 3.61-2.27 6.51-5.43 6.51-1.06 0-2.06-.55-2.4-1.2l-.65 2.5a10.4 10.4 0 01-1.26 2.62C9.43 21.73 10.68 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
                 </svg>
