@@ -18,13 +18,15 @@ export default function CtaSection() {
             backgroundSize: "contain",
           }}
         />
-        {/* Glow flipped — brightest at bottom-center of dome, fades upward */}
+        {/* Gradient overlay image to match the design */}
         <div
           className="absolute inset-0"
           style={{
-           backgroundImage: `
-  radial-gradient(ellipse 60% 90% at 50% calc(100% - 270px), rgba(67, 56, 202, 0.95) 0%, rgba(55, 48, 163, 0.75) 25%, rgba(37, 30, 120, 0.4) 40%, rgba(0, 0, 0, 0) 60%)
-`,
+            backgroundImage: "url('/images/Gradient.png')",
+            backgroundPosition: 'top center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain',
+            opacity: 1,
           }}
         />
       </div>
