@@ -179,7 +179,7 @@ export default function CtaSection() {
 
         {/* Bottom copyright and legal section */}
         <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-white/[0.08] pt-8 text-xs text-gray-500 sm:flex-row">
-          <p>Copyright 2024 — Programming Hero</p>
+          <p>Copyright 2026 — HireLoop</p>
           <div className="flex items-center gap-6">
             <Link href="/terms" className="transition hover:text-white">
               Terms & Policy

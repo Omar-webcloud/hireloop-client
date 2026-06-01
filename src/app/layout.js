@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-theme="dark"
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar></Navbar>

@@ -19,15 +19,15 @@ export default function Navbar() {
   const navLinks = [
     {
       label: "Browse Jobs",
-      href: "/jobs",
+      href: "/#jobs",
     },
     {
       label: "Company",
-      href: "/company",
+      href: "/#company",
     },
     {
       label: "Pricing",
-      href: "/pricing",
+      href: "/#pricing",
     },
   ];
 
@@ -36,15 +36,11 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-500 shadow-lg">
-            <span className="text-xl font-bold text-white">P</span>
-          </div>
-
-          <div className="hidden leading-none sm:block">
-            <h1 className="text-lg font-bold text-white">
-              Hire Loop
-            </h1>
-          </div>
+          <img
+            src="/images/logo.png"
+            alt="HireLoop"
+            className="h-9 w-auto"
+          />
         </Link>
 
         {/* RIGHT SIDE */}
