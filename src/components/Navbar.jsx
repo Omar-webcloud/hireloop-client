@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { useSession, signOut } from "@/lib/auth-client";
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,11 +37,13 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-3">
-          <img
-            src="/images/logo.png"
-            alt="HireLoop"
-            className="h-9 w-auto"
-          />
+          <Image
+  src="/images/logo.png"
+  alt="HireLoop"
+  width={144}              
+  height={36}              
+  className="h-9 w-auto"   
+/>
         </Link>
 
         {/* RIGHT SIDE */}
