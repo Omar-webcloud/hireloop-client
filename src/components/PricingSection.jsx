@@ -2,18 +2,15 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import { ArrowRight, BarChart3, BriefcaseBusiness, Sparkles } from "lucide-react";
 
 export default function PricingSection() {
-  const [billingPeriod, setBillingPeriod] = useState("monthly"); // "monthly" | "yearly"
+  const [billingPeriod, setBillingPeriod] = useState("monthly");
 
   const plans = [
     {
       name: "Starter",
-      icon: (
-        <svg className="h-6 w-6 text-fuchsia-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 0a9.003 9.003 0 018.716 2.253M12 3a9.003 9.003 0 00-8.716 2.253" />
-        </svg>
-      ),
+      icon: <BriefcaseBusiness className="h-6 w-6 text-fuchsia-400" />,
       price: { monthly: 0, yearly: 0 },
       description: "Start building your insights hub:",
       features: [
@@ -26,12 +23,8 @@ export default function PricingSection() {
     },
     {
       name: "Growth",
-      icon: (
-        <svg className="h-6 w-6 text-fuchsia-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v5.25c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 18.375v-5.25zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-9.75zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v14.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-        </svg>
-      ),
-      price: { monthly: 17, yearly: 13 }, // rounded yearly value (25% off $17 is $12.75)
+      icon: <BarChart3 className="h-6 w-6 text-fuchsia-400" />,
+      price: { monthly: 17, yearly: 13 },
       description: "Start building your insights hub:",
       features: [
         "Daily AI match brief (top 5)",
@@ -43,12 +36,8 @@ export default function PricingSection() {
     },
     {
       name: "Premium",
-      icon: (
-        <svg className="h-6 w-6 text-fuchsia-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-        </svg>
-      ),
-      price: { monthly: 99, yearly: 74 }, // rounded yearly value (25% off $99 is $74.25)
+      icon: <Sparkles className="h-6 w-6 text-fuchsia-400" />,
+      price: { monthly: 99, yearly: 74 },
       description: "Start building your insights hub:",
       features: [
         "Everything in Pro",
@@ -62,12 +51,10 @@ export default function PricingSection() {
 
   return (
     <section className="relative bg-black py-24 text-white">
-      {/* Decorative Blur */}
       <div className="absolute top-10 left-10 h-[300px] w-[300px] rounded-full bg-violet-600/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 h-[300px] w-[300px] rounded-full bg-violet-600/5 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Section Tag */}
         <div className="flex items-center justify-center gap-2 mb-4">
           <span className="h-1.5 w-1.5 bg-violet-500 rounded-none transform rotate-45" />
           <span className="text-xs font-semibold uppercase tracking-widest text-gray-400 font-mono">
@@ -76,12 +63,10 @@ export default function PricingSection() {
           <span className="h-1.5 w-1.5 bg-violet-500 rounded-none transform rotate-45" />
         </div>
 
-        {/* Section Heading */}
         <h2 className="text-center text-4xl sm:text-5xl font-semibold tracking-tight text-white mb-10 max-w-2xl mx-auto leading-tight">
           Pay for the leverage, <br /> not the listings
         </h2>
 
-        {/* Billing Period Toggle */}
         <div className="flex justify-center mb-16">
           <div className="relative flex items-center bg-white/[0.04] p-1.5 rounded-full border border-white/[0.08]">
             <button
@@ -99,16 +84,17 @@ export default function PricingSection() {
               }`}
             >
               Yearly
-              <span className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-bold ${
-                billingPeriod === "yearly" ? "bg-fuchsia-600 text-white" : "bg-fuchsia-600/20 text-fuchsia-400"
-              }`}>
+              <span
+                className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                  billingPeriod === "yearly" ? "bg-fuchsia-600 text-white" : "bg-fuchsia-600/20 text-fuchsia-400"
+                }`}
+              >
                 25%
               </span>
             </button>
           </div>
         </div>
 
-        {/* Pricing Cards Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {plans.map((plan, i) => (
             <motion.div
@@ -124,7 +110,6 @@ export default function PricingSection() {
               }`}
             >
               <div>
-                {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-3">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.06]">
@@ -141,10 +126,8 @@ export default function PricingSection() {
                   </div>
                 </div>
 
-                {/* Info Text */}
                 <p className="text-sm font-semibold text-gray-300 mb-6">{plan.description}</p>
 
-                {/* Features List */}
                 <ul className="space-y-4 mb-10">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center gap-3 text-sm text-gray-400">
@@ -157,7 +140,6 @@ export default function PricingSection() {
                 </ul>
               </div>
 
-              {/* Action Button */}
               <button
                 className={`w-full flex items-center justify-between rounded-xl px-5 py-4 text-sm font-semibold transition duration-300 ${
                   plan.isPopular
@@ -166,9 +148,7 @@ export default function PricingSection() {
                 }`}
               >
                 Choose This Plan
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
+                <ArrowRight className="h-4 w-4" />
               </button>
             </motion.div>
           ))}
