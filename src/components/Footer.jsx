@@ -27,7 +27,7 @@ export default function Footer() {
   height={40}              
 />
             </Link>
-            <p className="max-w-xs text-sm text-gray-400 leading-8">
+            <p className="max-w-xs text-sm text-gray-100 leading-8">
               The AI-native career platform. Built for people who take their work seriously.
             </p>
 
@@ -42,7 +42,7 @@ export default function Footer() {
               <Link
                 href="#"
                 aria-label="Pinterest"
-                className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-600 border border-violet-500 text-white hover:bg-violet-500 transition duration-300"
+                className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-600 border border-violet-500 text-white hover:bg-violet-900 transition duration-300"
               >
                 <LogoPinterest className="h-5 w-5" />
               </Link>
@@ -60,7 +60,7 @@ export default function Footer() {
             <h4 className="mb-6 text-sm font-semibold tracking-wider text-violet-500 uppercase">
               Product
             </h4>
-            <ul className="space-y-4 text-sm text-gray-400">
+            <ul className="space-y-4 text-sm text-gray-200">
               <li>
                 <Link href="/jobs" className="transition hover:text-white">
                   Job discovery
@@ -88,7 +88,7 @@ export default function Footer() {
             <h4 className="mb-6 text-sm font-semibold tracking-wider text-violet-500 uppercase">
               Navigations
             </h4>
-            <ul className="space-y-4 text-sm text-gray-400">
+            <ul className="space-y-4 text-sm text-gray-200">
               <li>
                 <Link href="/help-center" className="transition hover:text-white">
                   Help center
@@ -111,7 +111,7 @@ export default function Footer() {
             <h4 className="mb-6 text-sm font-semibold tracking-wider text-violet-500 uppercase">
               Resources
             </h4>
-            <ul className="space-y-4 text-sm text-gray-400">
+            <ul className="space-y-4 text-sm text-gray-200">
               <li>
                 <Link href="/brand-guideline" className="transition hover:text-white">
                   Brand Guideline
@@ -126,13 +126,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-white/[0.08] pt-8 text-xs text-gray-500 sm:flex-row">
+        <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-white/[0.08] pt-8 text-xs text-gray-300 sm:flex-row">
           <p>Copyright 2026 - HireLoop</p>
           <div className="flex items-center gap-6">
             <Link href="/terms" className="transition hover:text-white">
               Terms & Policy
             </Link>
-            <span className="text-gray-700">-</span>
+            <span className="text-gray-400">-</span>
             <Link href="/privacy" className="transition hover:text-white">
               Privacy Guideline
             </Link>
