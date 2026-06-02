@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card, Button, Link, TextField, Label, InputGroup, Input, FieldError } from "@heroui/react";
 import { Eye, EyeSlash, Person, At, ShieldKeyhole } from "@gravity-ui/icons";
 import { signUp } from "@/lib/auth-client";
 
 export default function SignupPage() {
+    const router = useRouter();
+
     // Form fields
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -41,6 +44,7 @@ export default function SignupPage() {
                 setName("");
                 setEmail("");
                 setPassword("");
+                router.replace("/");
             }
         } catch (err) {
             setError("An unexpected network error occurred.");
