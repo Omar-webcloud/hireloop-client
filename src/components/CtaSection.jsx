@@ -3,7 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { Globe, MessageCircle, Rss } from "lucide-react";
+import { LogoFacebook, LogoLinkedin } from "@gravity-ui/icons";
+
+function LogoPinterest(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.18 6.85 9.52-.1-.81-.19-2.06.04-2.95l1.18-5s-.3-.61-.3-1.5c0-1.4.81-2.46 1.82-2.46.86 0 1.28.64 1.28 1.41 0 .86-.55 2.15-.84 3.35-.24 1.01.51 1.83 1.51 1.83 1.81 0 3.2-1.9 3.2-4.64 0-2.43-1.75-4.13-4.25-4.13-2.89 0-4.58 2.17-4.58 4.41 0 .87.33 1.8.74 2.31.08.11.1.26.06.39l-.28 1.16c-.04.19-.16.23-.37.14-1.34-.63-2.18-2.58-2.18-4.15 0-3.38 2.46-6.49 7.12-6.49 3.73 0 6.62 2.66 6.62 6.21 0 3.72-2.34 6.7-5.6 6.7-1.1 0-2.14-.57-2.5-1.24l-.68 2.57a10.77 10.77 0 0 1-1.3 2.73c.51.16 1.04.24 1.6.24 5.65 0 10.23-4.58 10.23-10.23C22.23 6.58 17.65 2 12 2Z" />
+    </svg>
+  );
+}
 
 export default function CtaSection() {
   return (
@@ -92,21 +100,24 @@ export default function CtaSection() {
             <div className="flex items-center gap-3 pt-4">
               <Link
                 href="#"
+                aria-label="Facebook"
                 className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.06] text-gray-400 hover:bg-violet-600 hover:text-white transition duration-300"
               >
-                <Globe className="h-5 w-5" />
+                <LogoFacebook className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
+                aria-label="Pinterest"
                 className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-600 border border-violet-500 text-white hover:bg-violet-500 transition duration-300"
               >
-                <MessageCircle className="h-5 w-5" />
+                <LogoPinterest className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
+                aria-label="LinkedIn"
                 className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.06] text-gray-400 hover:bg-violet-600 hover:text-white transition duration-300"
               >
-                <Rss className="h-5 w-5" />
+                <LogoLinkedin className="h-5 w-5" />
               </Link>
             </div>
           </div>
