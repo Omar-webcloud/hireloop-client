@@ -85,11 +85,11 @@ export default function CtaSection() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="space-y-6 lg:col-span-2">
             <Link href="/" className="inline-block">
-              <Image
+              <img
                 src="/images/logo.png"
                 alt="hireloop"
-                width={160}
-                height={40}
+                width="160"
+                height="40"
                 className="h-10 w-auto"
               />
             </Link>
