@@ -35,23 +35,23 @@ export default async function AdminCompaniesPage() {
                   <td className="px-6 py-4">{new Date(company.createdAt).toLocaleDateString()}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize ${
-                      company.status === "Approved" ? "bg-emerald-400/10 text-emerald-400" :
-                      company.status === "Pending" ? "bg-amber-400/10 text-amber-400" : "bg-red-400/10 text-red-400"
+                      company.status?.toLowerCase() === "approved" ? "bg-emerald-400/10 text-emerald-400" :
+                      company.status?.toLowerCase() === "rejected" ? "bg-red-400/10 text-red-400" : "bg-amber-400/10 text-amber-400"
                     }`}>
                       {company.status || 'Pending'}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      {company.status !== "Approved" && (
-                        <form action={updateCompanyStatus.bind(null, company.id, "Approved")}>
+                      {company.status?.toLowerCase() !== "approved" && (
+                        <form action={updateCompanyStatus.bind(null, company.id, "approved")}>
                           <button className="px-3 py-1.5 text-xs font-medium bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-400 border border-emerald-600/20 rounded-lg transition-colors flex items-center gap-1">
                             <Check className="h-3.5 w-3.5" /> Approve
                           </button>
                         </form>
                       )}
-                      {company.status !== "Rejected" && (
-                        <form action={updateCompanyStatus.bind(null, company.id, "Rejected")}>
+                      {company.status?.toLowerCase() !== "rejected" && (
+                        <form action={updateCompanyStatus.bind(null, company.id, "rejected")}>
                           <button className="px-3 py-1.5 text-xs font-medium bg-red-600/20 hover:bg-red-600/40 text-red-400 border border-red-600/20 rounded-lg transition-colors flex items-center gap-1">
                             <X className="h-3.5 w-3.5" /> Reject
                           </button>

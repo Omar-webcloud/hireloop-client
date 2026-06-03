@@ -3,6 +3,11 @@ import { NextResponse } from 'next/server';
 export async function proxy(request) {
   const { pathname } = request.nextUrl;
   
+  // /admin always redirects to /dashboard/admin (auth is handled by the dashboard block below)
+  if (pathname === '/admin') {
+    return NextResponse.redirect(new URL('/dashboard/admin', request.url));
+  }
+
   // Only protect dashboard routes
   if (pathname.startsWith('/dashboard')) {
     // We can verify the session via the better-auth endpoint
@@ -51,5 +56,5 @@ export async function proxy(request) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/dashboard/:path*', '/admin'],
 };

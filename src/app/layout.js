@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex">
+      <body className="min-h-full flex flex-col w-full">
         <AuthProvider>
           {children}
         </AuthProvider>

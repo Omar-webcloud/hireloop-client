@@ -1,19 +1,18 @@
 import { Users, Building2, BriefcaseBusiness, DollarSign, Activity, CreditCard } from "lucide-react";
 import { JobsBarChart, UsersLineChart } from "./AdminChart";
+import { getAdminAnalytics, getAdminPayments } from "@/lib/data";
 
-export default function AdminDashboardPage() {
+export default async function AdminDashboardPage() {
+  const analytics = await getAdminAnalytics();
+  const payments = await getAdminPayments();
+
   const stats = [
-    { label: "Total Users", value: "24,500", icon: Users, color: "text-blue-400", bg: "bg-blue-400/10" },
-    { label: "Total Recruiters", value: "3,200", icon: Activity, color: "text-fuchsia-400", bg: "bg-fuchsia-400/10" },
-    { label: "Total Companies", value: "1,850", icon: Building2, color: "text-violet-400", bg: "bg-violet-400/10" },
-    { label: "Jobs Posted", value: "12,400", icon: BriefcaseBusiness, color: "text-emerald-400", bg: "bg-emerald-400/10" },
-    { label: "Platform Revenue", value: "$450K", icon: DollarSign, color: "text-amber-400", bg: "bg-amber-400/10" },
-  ];
-
-  const recentPayments = [
-    { id: 1, email: "user@example.com", plan: "Pro", amount: "$29.00", time: "10 mins ago" },
-    { id: 2, email: "hr@technova.com", plan: "Enterprise", amount: "$99.00", time: "1 hour ago" },
-    { id: 3, email: "john.doe@gmail.com", plan: "Pro", amount: "$29.00", time: "3 hours ago" },
+    { label: "Total Users", value: analytics.totalUsers?.toString() || "0", icon: Users, color: "text-blue-400", bg: "bg-blue-400/10" },
+    { label: "Total Seekers", value: analytics.totalSeekers?.toString() || "0", icon: Users, color: "text-indigo-400", bg: "bg-indigo-400/10" },
+    { label: "Total Recruiters", value: analytics.totalRecruiters?.toString() || "0", icon: Activity, color: "text-fuchsia-400", bg: "bg-fuchsia-400/10" },
+    { label: "Total Companies", value: analytics.totalCompanies?.toString() || "0", icon: Building2, color: "text-violet-400", bg: "bg-violet-400/10" },
+    { label: "Jobs Posted", value: analytics.totalJobs?.toString() || "0", icon: BriefcaseBusiness, color: "text-emerald-400", bg: "bg-emerald-400/10" },
+    { label: "Platform Revenue", value: analytics.totalRevenue || "$0", icon: DollarSign, color: "text-amber-400", bg: "bg-amber-400/10" },
   ];
 
   return (
@@ -24,7 +23,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 mb-10">
         {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
@@ -64,7 +63,7 @@ export default function AdminDashboardPage() {
           Recent Subscriptions
         </h3>
         <div className="space-y-4">
-          {recentPayments.map((payment) => (
+          {payments.map((payment) => (
             <div key={payment.id} className="flex items-center justify-between p-4 rounded-xl border border-white/[0.04] bg-white/[0.02] hover:bg-white/[0.04] transition">
               <div className="flex flex-col gap-1">
                 <h4 className="text-sm font-medium text-white">{payment.email}</h4>
@@ -72,10 +71,13 @@ export default function AdminDashboardPage() {
               </div>
               <div className="flex flex-col items-end gap-1">
                 <span className="text-sm font-bold text-white">{payment.amount}</span>
-                <span className="text-xs text-gray-500">{payment.time}</span>
+                <span className="text-xs text-gray-500">{new Date(payment.createdAt).toLocaleDateString()}</span>
               </div>
             </div>
           ))}
+          {payments.length === 0 && (
+            <p className="text-gray-500 text-sm py-4">No recent subscription payments recorded.</p>
+          )}
         </div>
       </div>
     </div>
