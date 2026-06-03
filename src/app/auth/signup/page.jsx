@@ -11,6 +11,7 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("seeker");
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,6 +31,7 @@ export default function SignupPage() {
         email,
         password,
         name,
+        role,
         callbackURL: "/",
       });
 
@@ -55,6 +57,23 @@ export default function SignupPage() {
         <div className="flex flex-col items-center justify-center gap-1 pb-6 border-b border-zinc-100 dark:border-zinc-800 mb-6 text-center">
           <h1 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">Create an account</h1>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">Fill in the fields below to get started</p>
+        </div>
+
+        <div className="flex bg-zinc-100 dark:bg-zinc-900 p-1 rounded-xl mb-6">
+          <button
+            type="button"
+            onClick={() => setRole("seeker")}
+            className={`flex-1 text-sm font-medium py-2 rounded-lg transition-colors ${role === "seeker" ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm" : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"}`}
+          >
+            Job Seeker
+          </button>
+          <button
+            type="button"
+            onClick={() => setRole("recruiter")}
+            className={`flex-1 text-sm font-medium py-2 rounded-lg transition-colors ${role === "recruiter" ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm" : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"}`}
+          >
+            Recruiter
+          </button>
         </div>
 
         <form onSubmit={handleSignup} className="flex flex-col gap-5">

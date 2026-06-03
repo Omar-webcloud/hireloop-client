@@ -3,7 +3,6 @@ import FeaturesSection from "@/components/FeaturesSection";
 import JobsSection from "@/components/JobsSection";
 import PricingSection from "@/components/PricingSection";
 import CtaSection from "@/components/CtaSection";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -20,7 +19,6 @@ export default function Home() {
         <PricingSection />
       </div>
       <CtaSection />
-      <Footer />
     </div>
     
   );

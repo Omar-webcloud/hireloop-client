@@ -8,6 +8,7 @@ import { signIn } from "@/lib/auth-client";
 export default function SigninPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("seeker");
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -49,6 +50,23 @@ export default function SigninPage() {
         <div className="flex flex-col items-center justify-center gap-1 pb-6 border-b border-zinc-100 dark:border-zinc-800 mb-6 text-center">
           <h1 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">Welcome back</h1>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">Enter your credentials to access your account</p>
+        </div>
+
+        <div className="flex bg-zinc-100 dark:bg-zinc-900 p-1 rounded-xl mb-6">
+          <button
+            type="button"
+            onClick={() => setRole("seeker")}
+            className={`flex-1 text-sm font-medium py-2 rounded-lg transition-colors ${role === "seeker" ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm" : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"}`}
+          >
+            Job Seeker
+          </button>
+          <button
+            type="button"
+            onClick={() => setRole("recruiter")}
+            className={`flex-1 text-sm font-medium py-2 rounded-lg transition-colors ${role === "recruiter" ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm" : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"}`}
+          >
+            Recruiter
+          </button>
         </div>
 
         <form onSubmit={handleSignin} className="flex flex-col gap-5">
