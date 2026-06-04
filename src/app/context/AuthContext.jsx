@@ -1,16 +1,16 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { roleDashboard } from "@/config/navigation";
 
-// Simple client‑side session fetch – expects a JSON response { user: { name, email, avatar, role } }
 export const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Load session on mount
   useEffect(() => {
     const fetchSession = async () => {
       try {
@@ -18,12 +18,14 @@ export const AuthProvider = ({ children }) => {
         if (!res.ok) throw new Error("No session");
         const data = await res.json();
         setUser(data.user);
-      } catch (e) {
+      } catch {
         setUser(null);
+      } finally {
+        setLoading(false);
       }
     };
     fetchSession();
-  }, [router]);
+  }, []);
 
   const logout = async () => {
     await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
@@ -31,8 +33,14 @@ export const AuthProvider = ({ children }) => {
     router.replace("/");
   };
 
+  /** Call this after a successful sign-in to redirect to the correct dashboard */
+  const redirectToDashboard = (role) => {
+    const path = roleDashboard[role] ?? "/";
+    router.replace(path);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser, logout }}>
+    <AuthContext.Provider value={{ user, setUser, loading, logout, redirectToDashboard }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useAuth } from "@/app/context/AuthContext";
 import { navigation } from "@/config/navigation";
 import { Menu, X, LogOut, User } from "lucide-react";
@@ -9,51 +10,110 @@ export default function Sidebar() {
   const { user, logout } = useAuth();
   const role = user?.role ?? "public";
   const links = navigation[role] || navigation.public;
-
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const [open, setOpen] = useState(true);
 
   return (
-    <aside className="flex flex-col bg-white/70 dark:bg-black/70 backdrop-blur-lg shadow-lg border-r border-zinc-200 dark:border-zinc-800 transition-width duration-300" style={{ width: open ? "250px" : "64px" }}>
-      <div className="flex items-center justify-between p-4">
-        <button onClick={() => setOpen(!open)} className="p-2 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition">
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+    <aside
+      className="flex flex-col flex-shrink-0 bg-[#0D0D12] border-r border-white/10 transition-all duration-300"
+      style={{ width: open ? "240px" : "64px" }}
+    >
+      {/* Top bar */}
+      <div className="flex items-center justify-between px-3 py-4 border-b border-white/10">
         {open && (
-          <div className="flex items-center">
-            <img src="/images/logo.png" alt="HireLoop" className="h-6 w-auto" />
-          </div>
+          <img src="/images/logo.png" alt="HireLoop" className="h-6 w-auto" />
         )}
+        <button
+          onClick={() => setOpen(!open)}
+          className="ml-auto p-2 rounded-lg text-zinc-400 hover:bg-white/10 hover:text-white transition"
+          aria-label="Toggle sidebar"
+        >
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </div>
-      {open && user && (
-        <div className="flex flex-col items-center p-4 space-y-2 border-b border-zinc-200 dark:border-zinc-800">
-          {user.avatar ? (
-            <img src={user.avatar} alt="avatar" className="h-12 w-12 rounded-full object-cover" />
+
+      {/* User info */}
+      {user && (
+        <div
+          className={`flex items-center gap-3 px-3 py-4 border-b border-white/10 ${
+            open ? "" : "justify-center"
+          }`}
+        >
+          {user.image ? (
+            <img
+              src={user.image}
+              alt="avatar"
+              className="h-9 w-9 rounded-full object-cover flex-shrink-0"
+            />
           ) : (
-            <div className="h-12 w-12 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-400 border border-zinc-300 dark:border-zinc-700">
-              <User size={24} />
+            <div className="h-9 w-9 rounded-full bg-violet-500/20 border border-violet-500/30 flex items-center justify-center flex-shrink-0">
+              <User size={16} className="text-violet-400" />
             </div>
           )}
-          <div className="text-center">
-            <p className="font-medium text-sm text-zinc-900 dark:text-zinc-100">{user.name}</p>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400">{user.email}</p>
-            <p className="text-xs text-primary capitalize">{user.role}</p>
-          </div>
-          <button onClick={logout} className="flex items-center gap-1 text-xs text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-600 transition">
-            <LogOut size={14} /> Logout
+          {open && (
+            <div className="overflow-hidden">
+              <p className="text-sm font-medium text-zinc-100 truncate leading-tight">
+                {user.name}
+              </p>
+              <span className="inline-block mt-0.5 text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-violet-500/20 text-violet-300 capitalize">
+                {user.role}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Nav links */}
+      <nav className="flex-1 overflow-y-auto py-3 space-y-0.5 px-2">
+        {links.map((link) => {
+          const Icon = link.icon;
+          const isActive =
+            link.href === pathname ||
+            (link.href !== "/dashboard/seeker" &&
+              link.href !== "/dashboard/recruiter" &&
+              link.href !== "/dashboard/admin" &&
+              pathname.startsWith(link.href));
+
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              title={!open ? link.label : undefined}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all group ${
+                isActive
+                  ? "bg-violet-500/15 text-violet-300"
+                  : "text-zinc-400 hover:bg-white/5 hover:text-zinc-100"
+              } ${!open ? "justify-center" : ""}`}
+            >
+              {Icon && (
+                <Icon
+                  size={18}
+                  className={`flex-shrink-0 ${
+                    isActive ? "text-violet-400" : "text-zinc-500 group-hover:text-zinc-300"
+                  }`}
+                />
+              )}
+              {open && <span className="truncate">{link.label}</span>}
+            </Link>
+          );
+        })}
+      </nav>
+
+      {/* Logout */}
+      {user && (
+        <div className="p-3 border-t border-white/10">
+          <button
+            onClick={logout}
+            className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-500 hover:bg-red-500/10 hover:text-red-400 transition-all ${
+              !open ? "justify-center" : ""
+            }`}
+            title={!open ? "Sign out" : undefined}
+          >
+            <LogOut size={18} className="flex-shrink-0" />
+            {open && <span>Sign out</span>}
           </button>
         </div>
       )}
-      <nav className="flex-1 overflow-y-auto py-2">
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded transition"
-          >
-            <span>{link.label}</span>
-          </Link>
-        ))}
-      </nav>
     </aside>
   );
 }

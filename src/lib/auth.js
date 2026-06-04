@@ -4,11 +4,9 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
 function requireEnv(name) {
     const value = process.env[name];
-
     if (!value) {
         throw new Error(`${name} is required for auth to work. Set it in your deployment environment.`);
     }
-
     return value;
 }
 
@@ -37,11 +35,15 @@ export const auth = betterAuth({
     user: {
         additionalFields: {
             role: { type: "string", defaultValue: "seeker" },
-            subscriptionPlan: { type: "string", defaultValue: "free" }
-        }
+            subscriptionPlan: { type: "string", defaultValue: "free" },
+        },
     },
-    database: mongodbAdapter(db, {
-       
-        client
-    }),
+    // ✅ Expose additionalFields through the session so getSession() returns them
+    session: {
+        additionalFields: {
+            role: { type: "string" },
+            subscriptionPlan: { type: "string" },
+        },
+    },
+    database: mongodbAdapter(db, { client }),
 });
