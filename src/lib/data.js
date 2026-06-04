@@ -19,16 +19,13 @@ async function getAuthHeaders() {
   } catch (error) {
     console.error("Error getting session headers:", error);
   }
-  return {
-    "Content-Type": "application/json"
-  };
+  return { "Content-Type": "application/json" };
 }
 
 // ---------------- COMMON / PUBLIC ----------------
 
 export async function getJobs(filters = {}) {
   try {
-    // Construct query parameters
     const params = new URLSearchParams();
     if (filters.category) params.append("category", filters.category);
     if (filters.type) params.append("type", filters.type);
@@ -36,7 +33,8 @@ export async function getJobs(filters = {}) {
     if (filters.minSalary) params.append("minSalary", filters.minSalary);
     if (filters.search) params.append("search", filters.search);
 
-    const res = await fetch(`${BACKEND_URL}/jobs?${params.toString()}`, {
+    // ✅ Fixed: server mounts common routes at /api/common/jobs
+    const res = await fetch(`${BACKEND_URL}/common/jobs?${params.toString()}`, {
       cache: "no-store"
     });
     if (!res.ok) throw new Error("Failed to fetch jobs");
@@ -49,7 +47,8 @@ export async function getJobs(filters = {}) {
 
 export async function getJobById(id) {
   try {
-    const res = await fetch(`${BACKEND_URL}/jobs/${id}`, {
+    // ✅ Fixed: /api/common/jobs/:id
+    const res = await fetch(`${BACKEND_URL}/common/jobs/${id}`, {
       cache: "no-store"
     });
     if (!res.ok) throw new Error("Failed to fetch job details");
@@ -63,7 +62,8 @@ export async function getJobById(id) {
 
 export async function getCompanies() {
   try {
-    const res = await fetch(`${BACKEND_URL}/companies`, {
+    // ✅ Fixed: /api/common/companies
+    const res = await fetch(`${BACKEND_URL}/common/companies`, {
       cache: "no-store"
     });
     if (!res.ok) throw new Error("Failed to fetch companies");
@@ -267,7 +267,7 @@ function getMockJobs() {
     salaryMax: 130000,
     currency: "USD",
     salaryRange: "$90k - $130k",
-    description: "Showcase your commitment to diversity and inclusion by highlighting initiatives. Join our fast-paced frontend team building modern web applications with React and Next.js.",
+    description: "Join our fast-paced frontend team building modern web applications with React and Next.js.",
     requirements: "3+ years of experience with React. Strong understanding of web fundamentals (HTML, CSS, JS).",
     responsibilities: "Build and maintain scalable web applications. Collaborate with designers and backend engineers.",
     createdAt: new Date().toISOString()
