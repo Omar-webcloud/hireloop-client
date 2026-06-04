@@ -78,7 +78,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/salary" className="transition hover:text-white">
-                  Salary data
+                  Salary
                 </Link>
               </li>
             </ul>
@@ -96,7 +96,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/career-library" className="transition hover:text-white">
-                  Career library
+                  Career
                 </Link>
               </li>
               <li>
