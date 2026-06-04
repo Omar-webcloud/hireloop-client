@@ -5,12 +5,16 @@ function normalizeBackendBaseUrl(raw) {
   const base = (raw || "").trim().replace(/\/+$/, ""); // trim trailing slashes
   if (!base) return "http://localhost:5000/api";
 
-  // If the env points to server root (e.g. https://host.com) append /api
-  if (!base.endsWith("/api")) return `${base}/api`;
-  return base;
+  // Accept either:
+  //  - http://host:5000
+  //  - http://host:5000/api
+  // and normalize to a base that includes `/api`.
+  if (base.endsWith("/api")) return base;
+  return `${base}/api`;
 }
 
 const BACKEND_URL = normalizeBackendBaseUrl(process.env.BACKEND_API_URL || "http://localhost:5000/api");
+
 
 // Helper to get authorization headers for backend requests
 async function getAuthHeaders() {
@@ -42,11 +46,9 @@ export async function getJobs(filters = {}) {
     if (filters.minSalary) params.append("minSalary", filters.minSalary);
     if (filters.search) params.append("search", filters.search);
 
-    // Some deployments expect auth headers even for public job search.
-    const authHeaders = await getAuthHeaders();
-
+    // Public jobs should not depend on auth/session headers.
     const res = await fetch(`${BACKEND_URL}/common/jobs?${params.toString()}`, {
-      headers: authHeaders,
+      headers: { "Content-Type": "application/json" },
       cache: "no-store"
     });
 
