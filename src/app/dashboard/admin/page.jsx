@@ -2,6 +2,8 @@ import { Users, Building2, BriefcaseBusiness, DollarSign, Activity, CreditCard }
 import { JobsBarChart, UsersLineChart } from "./AdminChart";
 import { getAdminAnalytics, getAdminPayments } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardPage() {
   const analytics = await getAdminAnalytics();
   const payments = await getAdminPayments();

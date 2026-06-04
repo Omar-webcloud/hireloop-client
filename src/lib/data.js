@@ -1,7 +1,16 @@
 import { auth } from "./auth";
 import { headers } from "next/headers";
 
-const BACKEND_URL = process.env.BACKEND_API_URL || "http://localhost:5000/api";
+function normalizeBackendBaseUrl(raw) {
+  const base = (raw || "").trim().replace(/\/+$/, ""); // trim trailing slashes
+  if (!base) return "http://localhost:5000/api";
+
+  // If the env points to server root (e.g. https://host.com) append /api
+  if (!base.endsWith("/api")) return `${base}/api`;
+  return base;
+}
+
+const BACKEND_URL = normalizeBackendBaseUrl(process.env.BACKEND_API_URL || "http://localhost:5000/api");
 
 // Helper to get authorization headers for backend requests
 async function getAuthHeaders() {
@@ -33,11 +42,25 @@ export async function getJobs(filters = {}) {
     if (filters.minSalary) params.append("minSalary", filters.minSalary);
     if (filters.search) params.append("search", filters.search);
 
-    // ✅ Fixed: server mounts common routes at /api/common/jobs
+    // Some deployments expect auth headers even for public job search.
+    const authHeaders = await getAuthHeaders();
+
     const res = await fetch(`${BACKEND_URL}/common/jobs?${params.toString()}`, {
+      headers: authHeaders,
       cache: "no-store"
     });
-    if (!res.ok) throw new Error("Failed to fetch jobs");
+
+    if (!res.ok) {
+      // Fetch the response body to surface the real backend error.
+      let bodyText = "";
+      try {
+        bodyText = await res.text();
+      } catch (_) {
+        bodyText = "";
+      }
+      throw new Error(`Failed to fetch jobs (status: ${res.status}). ${bodyText}`);
+    }
+
     return await res.json();
   } catch (error) {
     console.error("Error fetching jobs:", error);

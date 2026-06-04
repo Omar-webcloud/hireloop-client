@@ -2,6 +2,8 @@ import { Search, UserCog, UserX, UserCheck } from "lucide-react";
 import { getAllUsers } from "@/lib/data";
 import { changeUserRole, toggleUserStatus } from "@/app/actions/admin";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminUsersPage() {
   const users = await getAllUsers();
 
