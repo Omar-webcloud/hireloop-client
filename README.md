@@ -1,4 +1,4 @@
 # HIRE LOOP Client
 
-## Live Site
+## Live Website
 https://hireloop-jobs.vercel.app/
